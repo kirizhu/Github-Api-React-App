@@ -1,0 +1,114 @@
+import React, { useState, useEffect } from 'react';
+import { Form, Card, Icon, Image } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
+import './App.css';
+
+function App() {
+  const [name, setName] = useState('');
+  const [userName, setUsername] = useState('');
+  const [followers, setFollowers] = useState('');
+  const [following, setFollowing] = useState('');
+  const [repos, setRepos] = useState('');
+  const [avatar, setAvatar] = useState('');
+  const [userInput, setUserInput] = useState('');
+  const [joined, setJoined] = useState('');
+  const [info, setInfo] = useState('');
+  const [error, setError] = useState('');
+
+  const fetchUsers = async (user) => {
+    const res = await fetch(`https://api.github.com/users/${user}`);
+    const data = await res.json();
+    mapData(data);
+  };
+
+  useEffect(() => {
+    fetchUsers('example');
+  }, []);
+
+  const mapData = ({
+    name,
+    login,
+    followers,
+    following,
+    public_repos,
+    avatar_url,
+    created_at,
+    bio,
+  }) => {
+    setName(name);
+    setUsername(login);
+    setFollowers(followers);
+    setFollowing(following);
+    setRepos(public_repos);
+    setAvatar(avatar_url);
+    setJoined(created_at.slice(0, 4));
+    setInfo(bio);
+  };
+  const handleSearch = (event) => {
+    setUserInput(event.target.value);
+  };
+  const handleSubmit = () => {
+    fetchUsers(userInput);
+  };
+  return (
+    <div className='App'>
+      <div className='navbar'>futurice Github Search</div>
+      <div className='search'>
+        <Form className='form' onSubmit={handleSubmit}>
+          <Form.Group>
+            <input
+              className='input'
+              placeholder='Github Username'
+              onChange={handleSearch}
+            />
+            <Form.Button
+              color='black'
+              fluid
+              className='submit ui black button'
+              type='submit'
+              content='Search'
+            />
+          </Form.Group>
+        </Form>
+      </div>
+      <div className='card'>
+        <Card>
+          <Image src={avatar} wrapped ui={true} />
+          <Card.Content>
+            <Card.Header>
+              <Icon name='user' />
+              {userName}
+            </Card.Header>
+            <Card.Meta>
+              <span className='date'>
+                <Icon name='calendar alternate' /> Joined in {joined}
+              </span>
+            </Card.Meta>
+            <Card.Content>{name}</Card.Content>
+          </Card.Content>
+          <Card.Content extra>
+            <Card.Description>{info}</Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+            <a href={`https://github.com/${userName}/followers`}>
+              <Icon name='users' />
+              {followers} Followers
+            </a>
+          </Card.Content>
+          <Card.Content extra>
+            <a href={`https://github.com/${userName}/repositories`}>
+              <Icon name='folder' />
+              {repos} Repos
+            </a>
+          </Card.Content>
+          <Card.Content extra>
+            <Icon name='users' />
+            {following} Following
+          </Card.Content>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
+export default App;

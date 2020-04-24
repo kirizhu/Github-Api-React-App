@@ -1,0 +1,21 @@
+.App {
+  /* background-image: url('./img/Background-img.jpg'); */
+  background-image: url('https://s3.amazonaws.com/f.cl.ly/items/3a2h193d3W3O0L3g2U43/octocat_darkwood.jpg');
+  background-size: cover;
+}
+.navbar {
+  padding: 20px;
+  background-color: black;
+  color: #fff;
+  font-family: 'Ubuntu';
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+.search,
+.card {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* ef8172 */
