@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Card, Icon, Image } from 'semantic-ui-react';
+import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css';
 import './App.css';
 
@@ -16,9 +17,13 @@ function App() {
   const [error, setError] = useState('');
 
   const fetchUsers = async (user) => {
-    const res = await fetch(`https://api.github.com/users/${user}`);
-    const data = await res.json();
-    mapData(data);
+    const response = await axios.get(`/api/user/${user}`);
+    if (response.data.message) {
+      setError(response.data.message);
+    } else {
+      mapData(response.data);
+      setError(null);
+    }
   };
 
   useEffect(() => {
@@ -47,6 +52,7 @@ function App() {
   const handleSearch = (event) => {
     setUserInput(event.target.value);
   };
+
   const handleSubmit = () => {
     fetchUsers(userInput);
   };
@@ -61,52 +67,56 @@ function App() {
               placeholder='Github Username'
               onChange={handleSearch}
             />
-            <Form.Button
-              color='black'
-              fluid
-              className='submit ui black button'
-              type='submit'
-              content='Search'
-            />
           </Form.Group>
+          <Form.Button
+            color='black'
+            fluid
+            className='submit'
+            type='submit'
+            content='Search'
+          />
         </Form>
       </div>
-      <div className='card'>
-        <Card>
-          <Image src={avatar} wrapped ui={true} />
-          <Card.Content>
-            <Card.Header>
-              <Icon name='user' />
-              {userName}
-            </Card.Header>
-            <Card.Meta>
-              <span className='date'>
-                <Icon name='calendar alternate' /> Joined in {joined}
-              </span>
-            </Card.Meta>
-            <Card.Content>{name}</Card.Content>
-          </Card.Content>
-          <Card.Content extra>
-            <Card.Description>{info}</Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-            <a href={`https://github.com/${userName}/followers`}>
+      {error ? (
+        <h1>{error} </h1>
+      ) : (
+        <div className='card'>
+          <Card>
+            <Image src={avatar} wrapped ui={true} />
+            <Card.Content>
+              <Card.Header>
+                <Icon name='user' />
+                {userName}
+              </Card.Header>
+              <Card.Meta>
+                <span className='date'>
+                  <Icon name='calendar alternate' /> Joined in {joined}
+                </span>
+              </Card.Meta>
+              <Card.Content>{name}</Card.Content>
+            </Card.Content>
+            <Card.Content extra>
+              <Card.Description>{info}</Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <a href={`https://github.com/${userName}/followers`}>
+                <Icon name='users' />
+                {followers} Followers
+              </a>
+            </Card.Content>
+            <Card.Content extra>
+              <a href={`https://github.com/${userName}/repositories`}>
+                <Icon name='folder' />
+                {repos} Repos
+              </a>
+            </Card.Content>
+            <Card.Content extra>
               <Icon name='users' />
-              {followers} Followers
-            </a>
-          </Card.Content>
-          <Card.Content extra>
-            <a href={`https://github.com/${userName}/repositories`}>
-              <Icon name='folder' />
-              {repos} Repos
-            </a>
-          </Card.Content>
-          <Card.Content extra>
-            <Icon name='users' />
-            {following} Following
-          </Card.Content>
-        </Card>
-      </div>
+              {following} Following
+            </Card.Content>
+          </Card>
+        </div>
+      )}
     </div>
   );
 }

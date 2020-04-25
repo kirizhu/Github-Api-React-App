@@ -1,7 +1,7 @@
 .App {
   /* background-image: url('./img/Background-img.jpg'); */
-  background-image: url('https://s3.amazonaws.com/f.cl.ly/items/3a2h193d3W3O0L3g2U43/octocat_darkwood.jpg');
-  background-size: cover;
+  /* background-image: url('https://s3.amazonaws.com/f.cl.ly/items/3a2h193d3W3O0L3g2U43/octocat_darkwood.jpg');
+  background-size: cover; */
 }
 .navbar {
   padding: 20px;
@@ -16,6 +16,12 @@
   display: flex;
   justify-content: center;
   padding: 20px;
+}
+
+.submit {
+  width: 109%;
+  position: relative;
+  right: 7px;
 }
 
 /* ef8172 */
