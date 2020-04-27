@@ -85,8 +85,13 @@ function App() {
             <Image src={avatar} wrapped ui={true} />
             <Card.Content>
               <Card.Header>
-                <Icon name='user' />
-                {userName}
+                <a
+                  style={{ color: 'black' }}
+                  href={`https://github.com/${userName}`}
+                >
+                  <Icon name='user' />
+                  {userName}
+                </a>
               </Card.Header>
               <Card.Meta>
                 <span className='date'>
