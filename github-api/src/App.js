@@ -88,6 +88,7 @@ function App() {
                 <a
                   style={{ color: 'black' }}
                   href={`https://github.com/${userName}`}
+                  target='_blank'
                 >
                   <Icon name='user' />
                   {userName}
@@ -104,13 +105,19 @@ function App() {
               <Card.Description>{info}</Card.Description>
             </Card.Content>
             <Card.Content extra>
-              <a href={`https://github.com/${userName}/followers`}>
+              <a
+                target='_blank'
+                href={`https://github.com/${userName}/followers`}
+              >
                 <Icon name='users' />
                 {followers} Followers
               </a>
             </Card.Content>
             <Card.Content extra>
-              <a href={`https://github.com/${userName}/repositories`}>
+              <a
+                target='_blank'
+                href={`https://github.com/${userName}/repositories`}
+              >
                 <Icon name='folder' />
                 {repos} Repos
               </a>
