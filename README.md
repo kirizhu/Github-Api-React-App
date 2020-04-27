@@ -1,6 +1,8 @@
 # Github-Api-React-App
 
-React application working with the Github Api
+Web application working with the Github Api.
+
+The frontend is built using React and Semantic-ui while the backend is built using Nodejs and Express
 
 Search for Github users with this simple application.
 
@@ -22,8 +24,12 @@ While in the server directory, you can run:
 
 This will run the server on port 3001
 
+Then open another terminal tab and navigate to github-api directory 
+
 While in the github-api directory, you can run:
 
 ### `npm start`
 
 This will run the React Application through a proxy as it is setup.
+
+Hope you like the application.
