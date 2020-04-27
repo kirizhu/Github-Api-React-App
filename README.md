@@ -12,7 +12,7 @@ In the project directory, you can run:
 
 ### `cd github-api && npm i`
 
-### `cd .. && cd github-api && npm i`
+### `cd .. && cd server && npm i`
 
 This will allow you to install the needed dependencies in both client and server side.
 
