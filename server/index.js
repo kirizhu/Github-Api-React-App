@@ -21,7 +21,7 @@ const mapData = ({
     following,
     public_repos,
     avatar_url,
-    created_at,
+    created_at: created_at.slice(0, 4),
     bio,
   };
 };
@@ -38,7 +38,6 @@ app.get('/api/user/:user', (req, res) => {
       throw error;
     }
   })().catch((e) => {
-    console.error(e);
     res.send(e);
   });
 });

@@ -46,7 +46,7 @@ function App() {
     setFollowing(following);
     setRepos(public_repos);
     setAvatar(avatar_url);
-    setJoined(created_at.slice(0, 4));
+    setJoined(created_at);
     setInfo(bio);
   };
   const handleSearch = (event) => {
