@@ -78,7 +78,7 @@ function App() {
         </Form>
       </div>
       {error ? (
-        <h1>{error} </h1>
+        <h1 className='error'>{error} </h1>
       ) : (
         <div className='card'>
           <Card>

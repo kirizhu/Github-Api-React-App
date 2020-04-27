@@ -7,7 +7,8 @@
   font-size: 1.3rem;
 }
 .search,
-.card {
+.card,
+.error {
   display: flex;
   justify-content: center;
   padding: 20px;
